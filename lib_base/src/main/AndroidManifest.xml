@@ -1,0 +1,13 @@
+<manifest package="com.frame.basic.base"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!--全局定时任务调度器的保持唤醒权限-->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <!--全局定时任务调度器的保持唤醒-前台服务权限-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <application>
+        <!--全局定时任务调度器的保持唤醒服务-->
+        <service android:name=".ktx.WakeUpCpuService"/>
+    </application>
+</manifest>

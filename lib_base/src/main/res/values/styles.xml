@@ -1,0 +1,37 @@
+<resources>
+
+    <!-- application theme -->
+    <style name="base_AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--很重要，在app异常重启自动跳到启动页时可避免短暂的黑屏或白屏-->
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+    <!-- 底部弹出动画 -->
+    <style name="base_dialog_bottom_animation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/base_dialog_slide_in_from_bottom</item>
+        <item name="android:windowExitAnimation">@anim/base_dialog_slide_out_to_bottom</item>
+    </style>
+
+    <!-- 顶部弹出动画 -->
+    <style name="base_dialog_top_animation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/base_dialog_slide_in_from_top</item>
+        <item name="android:windowExitAnimation">@anim/base_dialog_slide_out_to_top</item>
+    </style>
+
+    <!-- 中间弹出动画 -->
+    <style name="base_dialog_center_animation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <!-- 右侧弹出动画 -->
+    <style name="base_dialog_right_animation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/base_dialog_slide_in_from_right</item>
+        <item name="android:windowExitAnimation">@anim/base_dialog_slide_out_to_right</item>
+    </style>
+
+    <!-- 左侧弹出动画 -->
+    <style name="base_dialog_left_animation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/base_dialog_slide_in_from_left</item>
+        <item name="android:windowExitAnimation">@anim/base_dialog_slide_out_to_left</item>
+    </style>
+</resources>

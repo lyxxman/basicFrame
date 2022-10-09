@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.frame.module.demo">
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <application>
+        <!--  Main 首页  -->
+        <activity android:name=".activity.main.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.mainlayout.MainLayoutActivity" />
+        <activity android:name=".activity.refreshlayout.RefreshLayoutActivity" />
+        <activity android:name=".activity.list.SingleTypeRecyclerViewActivity" />
+        <activity android:name=".activity.list.MultiTypeRecyclerViewActivity" />
+        <activity android:name=".activity.maininteraction.MainInteractionActivity" />
+        <activity android:name=".activity.page.PageActivity" />
+        <activity android:name=".activity.shareviewmodel.ShareViewModelsActivity" />
+        <activity android:name=".activity.shareviewmodel.ShareViewModelsSecondActivity" />
+        <activity android:name=".activity.callparams.CallParamsSecondActivity" />
+        <activity android:name=".activity.callparams.CallParamsActivity" />
+        <activity android:name=".activity.fragment.FragmentActivity" />
+        <activity android:name=".activity.dialog.DialogActivity" />
+        <activity android:name=".activity.modularization.ModularizationActivity" />
+        <activity android:name=".activity.progress.ProgressActivity" />
+        <activity android:name=".activity.popu.PopWindowActivity" />
+        <activity android:name=".activity.shareviewmodel.ShareViewModelsKeepActivity" />
+        <activity android:name=".activity.shareviewmodel.ShareViewModelsSecondKeepActivity" />
+        <activity android:name=".activity.callparams.CallPramsThreeActivity" />
+        <activity android:name=".activity.tab.TabActivity" />
+        <activity android:name=".activity.list.CoordinatorActivity" />
+        <activity android:name=".activity.timer.TimerActivity" />
+        <activity android:name=".activity.webview.WebViewActivity"/>
+        <activity android:name=".activity.webview.WebViewNewTabActivity"/>
+        <activity android:name=".activity.ipc.IpcActivity" />
+        <!-- IPC主进程服务 -->
+        <service android:name=".ipc.LocalService" />
+        <!-- IPC子进程1服务 -->
+        <service android:name=".ipc.RemoteService" android:process=":remote"/>
+        <!-- IPC子进程2服务 -->
+        <service android:name=".ipc.Remote2Service" android:process=":remote2"/>
+    </application>
+
+</manifest>

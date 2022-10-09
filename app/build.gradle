@@ -1,0 +1,135 @@
+//****************************************
+//************ app 壳的配置文件 ************
+//****************************************
+
+import com.frame.basic.buildsrc.*
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+android {
+    compileSdkVersion ProjectBuildConfig.compileSdkVersion
+
+    defaultConfig {
+        applicationId ProjectBuildConfig.applicationId
+        minSdkVersion ProjectBuildConfig.minSdkVersion
+        targetSdkVersion ProjectBuildConfig.targetSdkVersion
+        versionCode ProjectBuildConfig.versionCode
+        versionName ProjectBuildConfig.versionName
+        testInstrumentationRunner DependencyConfig.AndroidX.AndroidJUnitRunner
+        multiDexKeepProguard file("multidexKeep.pro")
+
+        ndk {
+            // 设置支持的SO库架构
+            //abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+            abiFilters 'armeabi-v7a'
+        }
+    }
+
+//    signingConfigs {
+//        releaseConfig {
+//            storeFile file('')
+//            storePassword ""
+//            keyAlias ""
+//            keyPassword ""
+//        }
+//    }
+
+    buildTypes {
+        debug {
+            buildConfigField "String", "VERSION_TYPE", "\"${ProjectBuildConfig.Version.DEVELOP}\""
+//            signingConfig signingConfigs.releaseConfig
+            minifyEnabled false
+            debuggable true
+            zipAlignEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        alpha {
+            buildConfigField "String", "VERSION_TYPE", "\"${ProjectBuildConfig.Version.ALPHA}\""
+//            signingConfig signingConfigs.releaseConfig
+            minifyEnabled true
+            debuggable false
+            zipAlignEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        beta {
+            buildConfigField "String", "VERSION_TYPE", "\"${ProjectBuildConfig.Version.BETA}\""
+//            signingConfig signingConfigs.releaseConfig
+            minifyEnabled false
+            debuggable true
+            zipAlignEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            buildConfigField "String", "VERSION_TYPE", "\"${ProjectBuildConfig.Version.RELEASE}\""
+//            signingConfig signingConfigs.releaseConfig
+            minifyEnabled true
+            debuggable false
+            zipAlignEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // 自定义打包apk的文件名
+    android.applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            if (outputFileName != null && outputFileName.endsWith('.apk')) {
+                outputFileName = "${ProjectBuildConfig.applicationId}" +
+                        "_${ProjectBuildConfig.versionCode}" +
+                        "(${ProjectBuildConfig.versionName})" +
+                        "_${variant.buildType.name}" +
+                        ".apk"
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
+    }
+    //打包时移除项目中的相关文件，不打入apk文件中,避免第三方包冲突
+    packagingOptions {
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE.md'
+        exclude 'META-INF/NOTICE.md'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+        exclude 'META-INF/rxjava.properties'
+        exclude 'META-INF/gradle/incremental.annotation.processors'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar", '*.aar'])
+
+    implementation project(path: ':module_demo') //框架演示 新项目可移除
+    implementation DependencyConfig.JetPack.HiltCore
+
+    kapt DependencyConfig.GitHub.AutoServiceAnnotations
+    kapt DependencyConfig.JetPack.HiltApt
+    kapt DependencyConfig.JetPack.HiltAndroidx
+    kapt project(":lib_base_apt")
+}

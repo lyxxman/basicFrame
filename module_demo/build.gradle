@@ -1,0 +1,14 @@
+import com.frame.basic.buildsrc.DependencyConfig
+
+//****************************************
+//******** module_home 的配置文件 *********
+//****************************************
+
+apply from: '../base_module.gradle'
+
+android {
+    resourcePrefix "demo_"
+}
+dependencies {
+    api project(path: ':lib_common_demo')
+}

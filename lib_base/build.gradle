@@ -1,0 +1,86 @@
+//****************************************
+//********** lib_base 的配置文件 ***********
+//****************************************
+
+apply from: '../base_lib.gradle'
+apply plugin: 'dagger.hilt.android.plugin'
+
+import com.frame.basic.buildsrc.*
+
+android {
+    resourcePrefix "base_"
+    defaultConfig {
+        buildConfigField("Boolean", "CRASH_REBOOT", "${ProjectBuildConfig.crashReboot}")
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    api DependencyConfig.AndroidX.CoreKtx
+    api DependencyConfig.AndroidX.AppCompat
+    api DependencyConfig.AndroidX.ConstraintLayout
+    api DependencyConfig.AndroidX.ActivityKtx
+    api DependencyConfig.AndroidX.FragmentKtx
+    api DependencyConfig.AndroidX.MultiDex
+    api DependencyConfig.Android.Material
+
+    api DependencyConfig.Kotlin.Kotlin
+    api DependencyConfig.Kotlin.CoroutinesCore
+    api DependencyConfig.Kotlin.CoroutinesAndroid
+
+    api DependencyConfig.JetPack.ViewModel
+    api DependencyConfig.JetPack.ViewModelSavedState
+    api DependencyConfig.JetPack.LiveData
+    api DependencyConfig.JetPack.Lifecycle
+    api DependencyConfig.JetPack.LifecycleProcess
+    api DependencyConfig.JetPack.Room
+    api DependencyConfig.JetPack.RoomCoroutines
+    api DependencyConfig.JetPack.HiltCore
+    api DependencyConfig.JetPack.DataBindingAdapter
+    api DependencyConfig.JetPack.DataBindingCommon
+    api DependencyConfig.JetPack.DataBindingCompilerCommon
+    api DependencyConfig.JetPack.DataBindingCompiler
+    api DependencyConfig.JetPack.DataBindingRuntime
+    api DependencyConfig.GitHub.Gson
+    api DependencyConfig.GitHub.MMKV
+    api DependencyConfig.GitHub.AutoSize
+    api DependencyConfig.GitHub.RecyclerViewAdapter
+    api DependencyConfig.GitHub.StatusBar
+    api DependencyConfig.GitHub.XXPermission
+    api DependencyConfig.GitHub.AutoService
+    api DependencyConfig.GitHub.OkHttp
+    api DependencyConfig.GitHub.OkHttpInterceptorLogging
+    api DependencyConfig.GitHub.Retrofit
+    api DependencyConfig.GitHub.RetrofitConverterGson
+    api DependencyConfig.GitHub.BlankJ
+    api DependencyConfig.GitHub.SmartRefreshLayoutKernel
+    api DependencyConfig.GitHub.SmartRefreshLayoutHeaderClassics
+    api DependencyConfig.GitHub.SmartRefreshLayoutFooterClassics
+    api DependencyConfig.GitHub.MagicIndicator
+    api DependencyConfig.GitHub.ShapeView
+    api DependencyConfig.GitHub.GlideWebpDecoder
+    api DependencyConfig.GitHub.Glide
+    api(DependencyConfig.GitHub.GlideIntegration) {
+        transitive = false
+    }
+    api DependencyConfig.GitHub.GlideGifDecoder
+    api DependencyConfig.GitHub.Lottie
+
+
+    kapt DependencyConfig.GitHub.AutoServiceAnnotations
+    kapt DependencyConfig.JetPack.HiltApt
+    kapt DependencyConfig.JetPack.HiltAndroidx
+    kapt DependencyConfig.JetPack.LifecycleCompilerAPT
+    kapt DependencyConfig.JetPack.RoomApt
+    kapt DependencyConfig.GitHub.GlideProcessor
+    kapt project(":lib_base_apt")
+
+    debugApi DependencyConfig.GitHub.LeakCanary
+    debugApi DependencyConfig.GitHub.ReadyStateSoftware
+    betaApi DependencyConfig.GitHub.LeakCanary
+    betaApi DependencyConfig.GitHub.ReadyStateSoftware
+    alphaApi DependencyConfig.GitHub.LeakCanary
+    alphaApi DependencyConfig.GitHub.ReadyStateSoftware
+    releaseApi DependencyConfig.GitHub.ReadyStateSoftwareNoOp
+}

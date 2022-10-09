@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFF"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/searchEdit"
+        android:layout_width="0px"
+        android:layout_weight="1"
+        android:layout_height="30dp"
+        android:paddingHorizontal="16dp"
+        android:drawablePadding="6dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:hint="请输入"
+        android:paddingStart="8dp"
+        android:paddingEnd="18dp"
+        android:singleLine="true"
+        android:textColor="#FF333539"
+        android:textColorHint="#aaafbb"
+        android:textSize="10sp"
+        android:background="#FFF" />
+
+</LinearLayout>

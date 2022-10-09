@@ -1,0 +1,25 @@
+//****************************************
+//********* lib_common 的配置文件 **********
+//****************************************
+
+apply from: '../base_lib.gradle'
+
+import com.frame.basic.buildsrc.*
+
+android {
+    resourcePrefix "provider_"
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar", '*.aar'])
+
+    api project(path: ':lib_base')
+
+    api DependencyConfig.JetPack.HiltCore
+
+    kapt DependencyConfig.GitHub.AutoServiceAnnotations
+    kapt DependencyConfig.JetPack.HiltApt
+    kapt DependencyConfig.JetPack.HiltAndroidx
+    kapt DependencyConfig.JetPack.LifecycleCompilerAPT
+    kapt DependencyConfig.JetPack.RoomApt
+}

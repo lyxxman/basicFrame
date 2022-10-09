@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/useService"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@android:color/darker_gray"
+        android:text="点击使用DemoService服务"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/modelSay"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:background="@android:color/darker_gray"
+        android:text="点击使用无model下沉demo"
+        app:layout_constraintTop_toBottomOf="@+id/useService"
+        android:layout_marginTop="30dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
