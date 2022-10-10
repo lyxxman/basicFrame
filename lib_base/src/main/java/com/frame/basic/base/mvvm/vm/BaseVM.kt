@@ -60,7 +60,9 @@ abstract class BaseVM(private val handle: SavedStateHandle) : CoreVM(), VMContro
     }
 
     override fun loadError(error: Int, msg: String?) {
-        uiStatus.postValue(UIStatusInfo(UIStatus.ERROR, error, msg))
+        if (!(this is PagingControl && refreshLayoutState.value == RefreshLayoutStatus.LOAD_MORE)) {
+            uiStatus.postValue(UIStatusInfo(UIStatus.ERROR, error, msg))
+        }
         refreshLayoutState.postValue(RefreshLayoutStatus.STOP)
     }
 
